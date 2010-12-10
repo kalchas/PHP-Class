@@ -20,7 +20,31 @@
 	$password = 'password';
 	$database = 'test_db';
 	
-	$connection = mysql_connect($host, $username, $password, $database) || exit(mysql_error());
+	$connection = mysql_connect($host, $username, $password, $database);
+	
+	if (is_resource($connection)) {
+	
+		$tables = mysql_query("SHOW TABLES;", $connection);
+		
+		if (is_resource($tables)) {
+		
+			while ($result = mysql_fetch_array($tables)) {
+
+				echo $result;
+
+			}
+			
+		} else {
+			
+			echo 'I had some trouble with that: ' . mysql_error();
+			
+		}
+		
+	} else {
+		
+		echo "Could not connect: " . mysql_error();
+		
+	}
 	
 	?>
 

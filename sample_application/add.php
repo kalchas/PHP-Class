@@ -11,7 +11,7 @@
 
 <body>
 
-	<form action="<?php echo $_SERVER['HTTP_REFERRER']; ?>" method="post">
+	<form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
 	
 		<fieldset>
 			<legend>Personal Information</legend>
