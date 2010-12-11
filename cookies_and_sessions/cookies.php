@@ -1,8 +1,31 @@
 <?php
 
 /**
- * Cookies need to be set before output is sent to the client.
+ * Cookies need to be set before output is sent to the client. Cookies are not evil, but some uses of cookies are.
+ * Try to avoid storing anything that's confidential in a cookie.
  */
+
+	$expire = time() + 3600;
+	
+	if (isset($_GET['cookie_no_like']) && true == $_GET['cookie_no_like']) {
+		
+		$expire = time() - 36000;
+		
+		$name = 'me_like_cookie';
+
+		$value = true;
+
+		setcookie($name, $value, $expire);
+		
+		header('Location: ' . $_SERVER['PHP_SELF']);
+		
+	}
+	
+	$name = 'me_like_cookie';
+	
+	$value = true;
+
+	setcookie($name, $value, $expire);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -19,6 +42,22 @@
 <body>
 
 	<h1>Cookies</h1>
+	
+	<?php
+	
+	if (isset($_COOKIE['me_like_cookie'])) {
+		
+		echo '<p>Oh, you like cookies! Me too!</p>';
+		
+		echo '<p><a href="' . $_SERVER['PHP_SELF'] . '?cookie_no_like=true">Click here if I\'ve made a mistake and you don\'t really like cookies.</a>';
+		
+	} else {
+		
+		echo '<p>Oh well. I like cookies.</p>';
+		
+	}
+	
+	?>
 
 </body>
 </html>
