@@ -17,6 +17,7 @@
 	
 	require_once(realpath(dirname(__FILE__) . '/connection.php')); //This will provide a connection to the database.
 	
+	//This is sql, not PHP. If you don't completely understand it, that's ok, as long as you get the jist.
 	$sql = 'CREATE TABLE IF NOT EXISTS addresses (
 		
 				`id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
